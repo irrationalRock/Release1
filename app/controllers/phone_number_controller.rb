@@ -8,12 +8,14 @@ class PhoneNumberController < ApplicationController
        render json:  @stuff
     end
     
+    #just 
     def nothing
        @stuff = []
        
        render json: @stuff
     end
     
+    #this is
     def accept
         phone_object = TelephoneNumber.parse(params[:id], :ca)
         
@@ -26,10 +28,10 @@ class PhoneNumberController < ApplicationController
 
     end
     
+    
+    #this is for processing the text file.
     def file
         #note there is currently a bug right now where 
-        #p request.body.string.is_a?(String)
-        #p request.body.string.squish
         @derp = request.body.string.squish.scan(/\d{2}[\s\d-]{5,}/).flatten
         
         phone_object = TelephoneNumber.parse(@derp, :ca)
