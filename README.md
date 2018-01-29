@@ -15,7 +15,7 @@ POST api/phonenumbers/parse/file
 
 # How do I build it?
 Ruby and Rails need to be installed first.
-Then run this command if you are building this:
+Clone the project and run this command:
 ```
 bundle install
 ```
@@ -34,7 +34,7 @@ rails s -b $IP -p $PORT
 
 # How do I run tests?
 Rspec is currently used for testing.
-The testing file located in the spec/controller/ folder and called phone_number_spec.rb.
+The testing file located in the spec/controller/folder and called phone_number_spec.rb.
 To run tests:
 ```
 bundle exec rspec
