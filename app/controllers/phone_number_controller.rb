@@ -8,17 +8,18 @@ class PhoneNumberController < ApplicationController
        render json:  @stuff
     end
     
-    #just 
+    
     def nothing
        @stuff = []
        
        render json: @stuff
     end
     
-    #this is
+    #this is GET api/phonenumbers/parse/text/:id
     def accept
-        phone_object = TelephoneNumber.parse(params[:id], :ca)
         
+        phone_object = TelephoneNumber.parse(params[:id], :ca)
+        p phone_object.valid?
         if phone_object.valid?
             render json: [phone_object.national_number(formatted: true)]
         else
@@ -31,11 +32,11 @@ class PhoneNumberController < ApplicationController
     
     #this is for processing the text file.
     def file
-        #note there is currently a bug right now where 
+        #note there is currently a bug here right now
         @derp = request.body.string.squish.scan(/\d{2}[\s\d-]{5,}/).flatten
         
         phone_object = TelephoneNumber.parse(@derp, :ca)
-        p phone_object.valid?
+        #p phone_object.valid?
         if phone_object.valid?
             render json: phone_object.national_number(formatted: true)
         else
